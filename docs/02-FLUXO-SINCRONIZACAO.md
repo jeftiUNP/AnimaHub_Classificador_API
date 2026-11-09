@@ -15,6 +15,16 @@ class ConcursoSource:
     def get_details(self, url: str) -> dict: ...
 ```
 
+Essa camada já está implementada em `app/sources/`:
+
+- `contracts.py` define os modelos normalizados com Pydantic;
+- `real.py` consome a API local em `concursosPublicosAPI`;
+- `fake.py` carrega `app/sources/fixtures/concursos_fake.json`;
+- `normalizer.py` converte os nomes da fonte (`link`, `status`, `workPlacesAvailable`) para o contrato do AnimaHub;
+- `errors.py` concentra erros de consulta e estrutura.
+
+A extração não depende do FastAPI e pode ser testada sem acesso à internet.
+
 ## Sincronização manual
 
 Não haverá rotina automática no MVP. A execução será iniciada por comando ou pela tela:

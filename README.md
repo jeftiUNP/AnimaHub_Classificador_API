@@ -4,7 +4,7 @@ Backend do AnimaHub Classificador, um sistema que analisa a formação, a experi
 
 ## Status do projeto
 
-O projeto está na fundação técnica do MVP. Atualmente, a API FastAPI possui o endpoint `GET /health`, testes automatizados e validação contínua no GitHub Actions. O modelo de domínio e os contratos previstos para a próxima etapa estão documentados em [`docs/`](docs/).
+O projeto está na fundação técnica do MVP. Atualmente, a API FastAPI possui o endpoint `GET /health`, adaptadores de extração para a fonte real e fake, testes automatizados e validação contínua no GitHub Actions. O modelo de domínio e os contratos previstos para a próxima etapa estão documentados em [`docs/`](docs/).
 
 ## Escopo do MVP
 
@@ -83,13 +83,13 @@ python -m pytest
 ```text
 app/
 ├── api/routes/       # endpoints HTTP
-├── ai/               # extração e análise semântica
+├── ai/               # análise semântica (próxima etapa)
 ├── core/             # configurações e exceções
 ├── db/               # conexão e sessões do banco
 ├── models/           # modelos SQLAlchemy
 ├── repositories/     # acesso a dados
-├── scraper/          # sincronização e normalização
-├── sources/          # fonte real e fonte fake
+├── scraper/          # sincronização (próxima etapa)
+├── sources/          # contrato, fonte real, fonte fake e normalização
 └── services/         # regras de negócio
 
 tests/
@@ -102,10 +102,9 @@ tests/
 1. Criar configuração e conexão com o banco.
 2. Criar o modelo single-user do perfil e estados.
 3. Criar modelos de concursos, análises e correspondências.
-4. Implementar a fonte real e a fonte fake com o mesmo contrato.
-5. Implementar a sincronização incremental.
-6. Implementar a análise semântica e o cache por hash.
-7. Expor perfil, concursos, sincronização e recomendações.
+4. Implementar a sincronização incremental usando `app.sources`.
+5. Implementar a análise semântica e o cache por hash.
+6. Expor perfil, concursos, sincronização e recomendações.
 
 ## Commits
 
