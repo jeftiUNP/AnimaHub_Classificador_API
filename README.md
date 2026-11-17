@@ -4,7 +4,7 @@ Backend do AnimaHub Classificador, um sistema que analisa a formação, a experi
 
 ## Status do projeto
 
-O projeto está na fundação técnica do MVP. Atualmente, a API FastAPI possui o endpoint `GET /health`, adaptadores de extração para a fonte real e fake, testes automatizados e validação contínua no GitHub Actions. O modelo de domínio e os contratos previstos para a próxima etapa estão documentados em [`docs/`](docs/).
+O projeto já possui a fundação do MVP, os adaptadores de extração, a persistência inicial e o classificador treinável. A API FastAPI possui o endpoint `GET /health`, testes automatizados e validação contínua no GitHub Actions. A IA está documentada em [`docs/03-PLANO-IA-ML.md`](docs/03-PLANO-IA-ML.md).
 
 ## Escopo do MVP
 
@@ -32,6 +32,8 @@ Autenticação, múltiplos usuários, rotina automática de sincronização e tr
 - Pydantic
 - Pytest e HTTPX
 - GitHub Actions para CI
+
+O projeto será desenvolvido com orçamento zero: a IA usará o OpenRouter com um modelo gratuito configurado por variável de ambiente. Para testes e apresentação, haverá também um provedor fake determinístico que não consome chamadas externas.
 
 O banco de produção será definido na implementação da persistência. SQLite pode ser utilizado no desenvolvimento inicial e PostgreSQL é a opção prevista para produção.
 
@@ -83,7 +85,7 @@ python -m pytest
 ```text
 app/
 ├── api/routes/       # endpoints HTTP
-├── ai/               # análise semântica (próxima etapa)
+├── ai/               # normalização, treinamento e classificação
 ├── core/             # configurações e exceções
 ├── db/               # conexão e sessões do banco
 ├── models/           # modelos SQLAlchemy
@@ -103,7 +105,7 @@ tests/
 2. Criar o modelo single-user do perfil e estados.
 3. Criar modelos de concursos, análises e correspondências.
 4. Implementar a sincronização incremental usando `app.sources`.
-5. Implementar a análise semântica e o cache por hash.
+5. Integrar o classificador à sincronização e persistir as análises.
 6. Expor perfil, concursos, sincronização e recomendações.
 
 ## Commits
